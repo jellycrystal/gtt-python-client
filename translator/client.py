@@ -134,3 +134,5 @@ class TranslatorToolkitClient(gdata.client.GDClient):
     def delete_acl(self, acl_link, user_email, auth_token=None, **kwargs):
         link = '%s/%s' % (acl_link, user_email)
         return self.delete(link)
+
+    DeleteAcl = delete_acl
