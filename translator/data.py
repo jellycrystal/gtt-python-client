@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 #
-# Copyright (c) 2010 Odesk Inc.
+# Copyright (c) 2010 oDesk corp.
+#
+# Licensed under terms of BSD license.
 #
 
 __author__ = 'yyurevich@jellycrystal.com (Yury Yurevich)'
