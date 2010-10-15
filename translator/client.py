@@ -27,6 +27,20 @@ TRANSLATION_MEMORIES_URL = AUTH_SCOPE + '/tm'
 GLOSSARIES_URL = AUTH_SCOPE + '/glossary'
 ACL_ROLES = ('owner', 'writer', 'commenter', 'reader')
 
+
+def _provide_url(id_or_url):
+    """
+    >>> _provide_url('http://translate.google.com/toolkit/feeds/documents/xxx')
+    'http://translate.google.com/toolkit/feeds/documents/xxx'
+    >>> _provide_url('zzzz')
+    'http://translate.google.com/toolkit/feeds/documents/zzzz'
+    """
+    if id_or_url.startswith(('http://', 'https://')):
+        return id_or_url
+    else:
+        return '%s/%s' % (DOCUMENTS_URL, urllib.quote(id_or_url))
+
+
 class TranslatorToolkitClient(gdata.client.GDClient):
     api_version = '1.0'
     auth_service = 'gtrans'
@@ -54,6 +68,15 @@ class TranslatorToolkitClient(gdata.client.GDClient):
                              desired_class=desired_class, **kwargs)
 
     GetDocuments = get_documents
+
+    def get_document(self, id_or_url, auth_token=None,
+                     desired_class=tdata.TranslationEntry, **kwargs):
+
+        url = _provide_url(id_or_url)
+        return self.get_entry(url, auth_token=auth_token,
+                              desired_class=desired_class, **kwargs)
+
+    GetDocument = get_document
 
 
     def get_translation_memories(self, auth_token=None,
