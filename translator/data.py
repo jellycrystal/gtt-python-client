@@ -32,9 +32,10 @@ class TargetLanguage(atom.core.XmlElement):
 
 
 class Category(atom.core.XmlElement):
-    _qname = GTT_TRANSLATION_STATE_TEMPLATE % 'category'
+    _qname = atom.data.ATOM_TEMPLATE % 'category'
     term = 'term'
     label = 'label'
+    scheme = 'scheme'
 
 
 class NumberOfSourceWords(atom.core.XmlElement):
