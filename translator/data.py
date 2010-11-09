@@ -30,6 +30,8 @@ class SourceLanguage(atom.core.XmlElement):
 class TargetLanguage(atom.core.XmlElement):
     _qname = GTT_TEMPLATE % 'targetLanguage'
 
+class Annotation(atom.core.XmlElement):
+    _qname = GTT_TEMPLATE % 'annotation'
 
 class Category(atom.core.XmlElement):
     _qname = atom.data.ATOM_TEMPLATE % 'category'
@@ -45,6 +47,20 @@ class NumberOfSourceWords(atom.core.XmlElement):
 class PercentComplete(atom.core.XmlElement):
     _qname = GTT_TEMPLATE % 'percentComplete'
 
+class NumWords(atom.core.XmlElement):
+    _qname = GTT_TEMPLATE % 'NumWords'
+
+class TranslationType(atom.core.XmlElement):
+    _qname = GTT_TEMPLATE % 'TranslationType'
+
+class PrefillStatsEntry(atom.core.XmlElement):
+    _qname = GTT_TEMPLATE % 'prefillStatsEntry'
+    translationType = TranslationType
+    numWords = NumWords
+
+class PrefillStats(atom.core.XmlElement):
+    _qname = GTT_TEMPLATE % 'prefillStats'
+    entry = [PrefillStatsEntry]
 
 class TranslationMemory(atom.core.XmlElement):
     _qname = GTT_TEMPLATE % 'translationMemory'
@@ -66,10 +82,12 @@ class TranslationEntry(gdata.data.GDEntry, gdata.data.LinkFinder):
     sourceLanguage = SourceLanguage
     targetLanguage = TargetLanguage
     category = Category
+    annotation = Annotation
     numberOfSourceWords = NumberOfSourceWords
     percentComplete = PercentComplete
     glossary = [Glossary]
     translationMemory = [TranslationMemory]
+    prefillStats = PrefillStats
 
 
 class TranslationMemoryEntry(gdata.data.GDEntry, gdata.data.LinkFinder):
