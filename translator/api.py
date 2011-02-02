@@ -1,12 +1,17 @@
 """
 Handy abstractions for Google Translator's API
 """
-import lxml.etree
 import urllib
 import cgi
 import urlparse
 import translator.client
 import translator.data
+
+try:
+    import lxml.etree
+    lxml_enable = True
+except ImportError:
+    lxml_enable = False
 
 WORKBENCH_URL = 'http://translate.google.com/toolkit/workbench'
 
@@ -135,9 +140,12 @@ class TranslationDocument(object):
 
     @property
     def raw_entry(self):
-        return lxml.etree.tostring(
-            lxml.etree.fromstring(self.entry.to_string()),
-            pretty_print=True)
+        as_string = self.entry.to_string()
+        if lxml_enable:
+            as_string = lxml.etree.tostring(lxml.etree.fromstring(as_string),
+                                            pretty_print=True)
+        return as_string
+
 
     def __str__(self):
         return str(self.id)
