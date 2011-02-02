@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gtt-python-client',
-    version='0.2a1',
+    version='0.2a2',
     description='Python bindings for Google Translator Toolkit API.',
     long_description=open('README.md').read(),
     author='Yury Yurevich',
@@ -11,6 +11,7 @@ setup(
     license='BSD',
     packages=find_packages(),
     include_package_data=False,
+    install_requires=['gdata>=2.0.13'],
     zip_safe=True,
     # Get more strings from http://www.python.org/pypi?:action=list_classifiers
     classifiers=[
