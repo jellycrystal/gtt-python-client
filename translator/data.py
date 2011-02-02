@@ -11,6 +11,7 @@ __author__ = 'yyurevich@jellycrystal.com (Yury Yurevich)'
 import atom.core
 import atom.data
 import gdata.data
+import gdata.docs.data
 
 GTT_TEMPLATE = '{http://schemas.google.com/gtt/2009/11}%s'
 GTT_TRANSLATION_STATE_TEMPLATE = ('{http://schemas.google.com/gtt/2009/11'
@@ -88,6 +89,7 @@ class TranslationEntry(gdata.data.GDEntry, gdata.data.LinkFinder):
     glossary = [Glossary]
     translationMemory = [TranslationMemory]
     prefillStats = PrefillStats
+    lastModifiedBy = gdata.docs.data.LastModifiedBy
 
 
 class TranslationMemoryEntry(gdata.data.GDEntry, gdata.data.LinkFinder):
