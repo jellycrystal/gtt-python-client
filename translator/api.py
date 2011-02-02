@@ -155,8 +155,8 @@ class TranslationDocument(object):
 
 
 def fetch_translation_documents(client):
-    # TODO: handle pagination for GData for long feeds.
-    for document in client.get_documents().entry:
-        d = TranslationDocument(client=client, entry=document)
-        yield d
-
+    feed = client.get_documents()
+    while feed:
+        for document in feed.entry:
+            yield TranslationDocument(client=client, entry=document)
+        feed = client.get_next(feed) if feed.get_next_link() else None
