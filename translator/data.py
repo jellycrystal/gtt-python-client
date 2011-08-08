@@ -82,7 +82,7 @@ class TranslationEntry(gdata.data.GDEntry, gdata.data.LinkFinder):
     documentSource = DocumentSource
     sourceLanguage = SourceLanguage
     targetLanguage = TargetLanguage
-    category = Category
+    category = [Category]
     annotation = Annotation
     numberOfSourceWords = NumberOfSourceWords
     percentComplete = PercentComplete
