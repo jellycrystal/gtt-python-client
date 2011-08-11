@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gtt-python-client',
-    version='0.2a2',
+    version='0.2a3',
     description='Python bindings for Google Translator Toolkit API.',
     long_description=open('README.md').read(),
     author='Yury Yurevich',
